@@ -25,9 +25,9 @@ Pour démarrer le projet en local, suivez les étapes ci-dessous :
    git clone https://github.com/votre-utilisateur/taskflow.git
    cd taskflow
    npm install
-# ou
+   ou
    yarn dev
-
+   
    npm run dev
-# ou
+   ou
    yarn dev
