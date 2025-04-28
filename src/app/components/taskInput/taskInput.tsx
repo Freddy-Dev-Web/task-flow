@@ -1,14 +1,42 @@
+"use client"
+import { useState } from 'react'
+import styles from './TaskInput.module.css'
 
-export const TaskInput = () => {
+// Definir le type des props
+interface TaskInputProps {
+    addTask: (title: string) => void
+
+}
+
+export const TaskInput = ({ addTask}: TaskInputProps) => {
+    const [taskTitle, setTaskTitle] = useState<string>("")
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTaskTitle(e.target.value)
+    }
+
+    const handleAddTask = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        if(taskTitle.trim()) {
+            addTask(taskTitle)
+            setTaskTitle("")
+        }
+    }
+
     return (
-        <div className="bg-[#171717] rounded-[8px] border-black border-[1px] px-10 py-10 mb-[30px] shadow-[0px_0px_1em_rgba(59,121,246,0.15)]"> 
-            <h2 className="mb-10">🍬Ajoute ta prochaine tache</h2>
-            <form className="flex justify-between items-center mb-15">
-                <input type="text"
-                className="bg-[#171717] border-[#272727] rounded-8 text-[16px] height-[40px] width-[100%] px-[20px] py-[10px] text-gray "
-                placeholder="Indiquer un titre de tache explicite."
+        <div className={`box mx-10 ${styles.element} `}> 
+            <h2 className={`${styles.title}`}>🍬Ajoute ta prochaine tache</h2>
+            <form
+            onSubmit={handleAddTask} 
+            className={`${styles.container}`}>
+                <input 
+                type="text"
+                className={`${styles.input}`}
+                placeholder="Indiquez un titre de tache explicite."
+                onChange={handleInputChange}
+                value={taskTitle}
+                required
                 />
-            <button className="bouton-primary" type="submit">
+            <button className="button-primary" type="submit">
                 Ajouter
             </button>
             </form>
