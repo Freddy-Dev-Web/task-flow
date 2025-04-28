@@ -4,10 +4,9 @@ import TaskItem from '../taskItem/TaskItem'
 
 
 interface TaskListProps {
-  imcompletedTasks: number;
+  incompletedTasks: number;
   editTask: (id: number, completed: boolean) => void;
   deleteTask: (id: number) => void;
-  incompletedTasks: number;
   taskList: {
     id: number;
     title: string;
